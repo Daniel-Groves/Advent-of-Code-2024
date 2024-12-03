@@ -8,16 +8,15 @@ real_matches = []
 
 do = True
 
+total = 0
+
 for match in matches:
     if match == "do()":
         do = True
     elif match == "don't()":
         do = False
     elif do:
-        real_matches.append(match)
-
-real_matches = [match[4:-1].split(',') for match in real_matches]
-
-total = sum([int(match[0]) * int(match[1]) for match in real_matches])
+        num1, num2 = match[4:-1].split(',')
+        total += int(num1) * int(num2)
 
 print(total)
