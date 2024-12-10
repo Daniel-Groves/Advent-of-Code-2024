@@ -8,29 +8,27 @@ lines = [line.split(": ") for line in lines]
 sums = []
 nums = []
 
-def check_sum(sum, nums, operations):
-    if len(nums) == 1:
-        if sum == nums[0]:
-            return True
-        else:
-            return False
-        
-    total = nums[0]
+def can_reach_target(target, nums, index=0, current_result=0):
+    # Base case
+    if index == len(nums):
+        return current_result == target
+    
+    # Recursive case
+    next_num = nums[index]
 
-    for i in range(len(nums[1:])):
-        if total > sum:
-            return False
-        if operations[i] == "+":
-            total += nums[i+1]
-        elif operations[i] == "*":
-            total *= nums[i+1]
-        elif operations[i] == "||":
-            total = int(str(total) + str(nums[i+1]))
-
-    if total == sum:
+    # Try adding
+    if can_reach_target(target, nums, index + 1, current_result + next_num):
         return True
-    else:
-        return False
+    
+    # Try multiplying
+    if can_reach_target(target, nums, index + 1, current_result * next_num):
+        return True
+    
+    # Try concatenating
+    if can_reach_target(target, nums, index + 1, int(str(current_result) + str(next_num))):
+        return True
+    
+    return False
 
 
 for line in lines:
@@ -40,13 +38,7 @@ for line in lines:
 total = 0
 
 for i in range(len(nums)):
-    poss_operations = list(product(["+", "*", "||"], repeat=len(nums[i])-1))
-    poss_operations = [list(poss_operation) for poss_operation in poss_operations]
-
-    for poss_operation in poss_operations:
-        if check_sum(sums[i], nums[i], poss_operation):
-            total += sums[i]
-            break
-
+    if can_reach_target(sums[i], nums[i]):
+        total += sums[i]
 
 print(total)
