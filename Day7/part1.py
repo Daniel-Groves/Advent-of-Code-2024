@@ -18,15 +18,14 @@ def check_sum(sum, nums, operations):
     total = nums[0]
 
     for i in range(len(nums[1:])):
+        if total > sum:
+            return False
         if operations[i] == "+":
             total += nums[i+1]
         elif operations[i] == "*":
             total *= nums[i+1]
 
-    if total == sum:
-        return True
-    else:
-        return False
+    return total == sum
 
 
 for line in lines:
