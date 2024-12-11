@@ -1,13 +1,3 @@
-from itertools import product
-
-with open("input.txt") as f:
-    lines = [line.strip() for line in f]
-
-lines = [line.split(": ") for line in lines]
-
-sums = []
-nums = []
-
 def can_reach_target(target, nums, index=0, current_result=0):
     # Base case
     if index == len(nums):
@@ -30,6 +20,13 @@ def can_reach_target(target, nums, index=0, current_result=0):
     
     return False
 
+with open("input.txt") as f:
+    lines = [line.strip() for line in f]
+
+lines = [line.split(": ") for line in lines]
+
+sums = []
+nums = []
 
 for line in lines:
     sums.append(int(line[0]))

@@ -1,16 +1,16 @@
 input = list(open("input.txt").read())
 
-def move(string):
-    gap_index = string.index(".")
+def move(storage):
+    gap_index = storage.index(".")
 
-    for i in range(len(string)-1,0,-1):
-        if string[i] != ".":
+    for i in range(len(storage)-1,0,-1):
+        if storage[i] != ".":
             last_file_index = i
             break
 
-    string[gap_index] = string[last_file_index]
+    storage[gap_index] = storage[last_file_index]
 
-    return string[:last_file_index]
+    return storage[:last_file_index]
 
 translation = []
 
