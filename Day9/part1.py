@@ -3,16 +3,14 @@ input = list(open("input.txt").read())
 def move(string):
     gap_index = string.index(".")
 
-
-    for i in range(len(string)):
-        if string[len(string) - 1 - i] != ".":
-            last_file_index = len(string) - 1 - i
+    for i in range(len(string)-1,0,-1):
+        if string[i] != ".":
+            last_file_index = i
             break
 
     string[gap_index] = string[last_file_index]
-    string[last_file_index] = "."
 
-    return string
+    return string[:last_file_index]
 
 translation = []
 
@@ -26,11 +24,8 @@ for i in range(len(input)):
 
 count = 0
 
-
-initial_free_space_count = translation.count(".")
-while translation.count(".") > 0 and "." in translation[:-initial_free_space_count]:
+while "." in translation:
     translation = move(translation)
-
 
 checksum = 0
 
