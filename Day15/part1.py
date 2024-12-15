@@ -77,7 +77,7 @@ for i in range(len(grid)):
             pos = [i,j]
             break
 
-for direction in list(directions)[:]:
+for direction in list(directions):
     directions = {">": [0,1], "<": [0,-1], "^": [-1,0], "v": [1,0]}
 
     if direction in directions:
