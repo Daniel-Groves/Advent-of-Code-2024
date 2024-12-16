@@ -11,6 +11,8 @@ def move_and_push(grid, pos_x, pos_y, dir_x, dir_y):
     path = [(pos_x, pos_y)]
     visited = set()
     while path:
+        print(f"Path: {path}")
+        print(f"Stack: {stack}")
         x, y = path.pop()
         if (x, y) in visited or grid[x][y] == ".":
             continue
@@ -71,6 +73,10 @@ directions = {">": [0,1], "<": [0,-1], "^": [-1,0], "v": [1,0]}
 
 for direction in list(directions_input)[:]:
     if direction in directions:
+        #print grid
+        for row in grid:
+            print("".join(row))
+        print(direction)
         pos[0], pos[1] = move_and_push(grid, pos[0], pos[1], directions[direction][0], directions[direction][1])
     
 print(calculate_coord_sum(grid))

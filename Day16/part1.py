@@ -29,7 +29,6 @@ def search(start, end, start_dir):
     visited = set()
 
     while priority_queue:
-        # print(priority_queue)
         cost, x, y, direction = heapq.heappop(priority_queue)
 
         if (x, y) == end:
