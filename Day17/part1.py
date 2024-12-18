@@ -8,6 +8,8 @@ a = int((re.findall(r"\d+", input[0]))[0])
 b = int((re.findall(r"\d+", input[1]))[0])
 c = int((re.findall(r"\d+", input[2]))[0])
 
+a = 61
+
 print(a, b, c)
 
 program = [int(i) for i in input[4][9:].split(",")]
@@ -59,7 +61,7 @@ halt = False
 output = []
 
 while not halt:
-    if instruction_pointer + 1 > len(program):
+    if instruction_pointer + 1 >= len(program):
         halt = True
         break
 
@@ -90,5 +92,5 @@ while not halt:
 
     instruction_pointer += 2
 
-
+print("output:")
 print(",".join(output))
