@@ -1,6 +1,8 @@
-from collections import deque
+from collections import deque, defaultdict
 
 grid = [list(line) for line in open("input.txt").read().split("\n")]
+
+MAX_CHEAT = 1
 
 def length_to_end(grid, start, end):
     queue = deque()
@@ -22,7 +24,7 @@ def length_to_end(grid, start, end):
 
     return None, []
 
-def length_with_cheat(wall, path):
+def length_with_cheat(grid, start, end, cheat_wall, path):
     saves = [0]
 
     for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
@@ -47,10 +49,20 @@ for y, row in enumerate(grid):
 steps, path = length_to_end(grid, start, end)
 
 saved_count = 0
+counts = defaultdict(int)
+print(path)
+print(len(walls))
 
-for wall in walls:
-    saved = length_with_cheat(wall, path)
-    if saved >= 100:
-        saved_count += 1
+# for wall in walls:
+#     saved = length_with_cheat(grid, start, end, wall, path)
+#     print(saved)
+#     if saved:
+#         counts[saved] += 1
+#     if saved >= 100:
+#         saved_count += 1
+
+for path_point in path:
+
 
 print(saved_count)
+print(counts)
