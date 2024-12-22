@@ -1,8 +1,10 @@
 from itertools import permutations, product
 from functools import cache
+import time
 
 codes = [code for code in open("input.txt").read().split("\n")]
 
+@cache
 def get_sequences(start, end, arrows):
     coords = {
     '7': (0, 0), '8': (1, 0), '9': (2, 0),
@@ -82,10 +84,14 @@ def compute_path_length(sequence, depth):
 
 total = 0
 
+start = time.time()
+
 for code in codes:
     total += int(code[:-1]) * compute_path_length(code, 27)
 
 print(total)
+
+print(time.time() - start)
 
 
 
