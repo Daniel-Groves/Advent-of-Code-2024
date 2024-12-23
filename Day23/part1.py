@@ -7,7 +7,7 @@ for pair in pairs:
     individuals.append(pair[0])
     individuals.append(pair[1])
 
-pairs = [tuple(pair) for pair in pairs]
+pairs = [(sorted(pair)) for pair in pairs]
 
 print(len(individuals))
 
@@ -18,9 +18,10 @@ for lan in individuals:
     i += 1
     for pair in pairs:
         if lan in pair: continue
-        if ((lan, pair[0]) in pairs or (pair[0],lan) in pairs) and ((lan, pair[1]) in pairs or (pair[1],lan) in pairs):
-            if set([lan, pair[0], pair[1]]) in threes: continue
-            threes.append(set([lan, pair[0], pair[1]]))
+        if sorted([lan, pair[0]]) in pairs and sorted([lan, pair[1]]) in pairs:
+            three = sorted([lan, pair[0], pair[1]])
+            if three in threes: continue
+            threes.append(three)
 
 count = 0
 threes = [list(three) for three in threes]
